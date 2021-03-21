@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
 
+@RequiredArgsConstructor
+@RestController
 public class CourseController {
 
-    private final CourseRepository courseRepository;
 
+    private final CourseRepository courseRepository;
     private final CourseService courseService;
 
     // PostMapping을 통해서, 같은 주소라도 방식이 다름을 구분합니다.
@@ -34,7 +34,7 @@ public class CourseController {
     }
 
     @GetMapping("/api/courses")
-    private List<Course> getCourses() {
+    public List<Course> getCourses() {
         return courseRepository.findAll();
     }
 
