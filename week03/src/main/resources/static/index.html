@@ -271,60 +271,61 @@
         function getMessages() {
             // 1. 기존 메모 내용을 지웁니다.
             $('#cards-box').empty();
+            // 2. 메모 목록을 불러와서 HTML로 붙입니다.
             $.ajax({
-                type: "GET",
-                url: "/api/memos",
+                type: 'GET',
+                url: '/api/memos',
                 success: function (response) {
                     for (let i = 0; i < response.length; i++) {
-                        let memo = response[i];
-                        let id = memo.id;
-                        let username = memo.username;
-                        let contents = memo.contents;
-                        let modifiedAt = memo.modifiedAt;
+                        let message = response[i];
+                        let id = message['id'];
+                        let username = message['username'];
+                        let contents = message['contents'];
+                        let modifiedAt = message['modifiedAt'];
                         addHTML(id, username, contents, modifiedAt);
                     }
                 }
             })
-            // 2. 메모 목록을 불러와서 HTML로 붙입니다.
         }
 
         // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
         function addHTML(id, username, contents, modifiedAt) {
             // 1. HTML 태그를 만듭니다.
             let tempHtml = `<div class="card">
-        <!-- date/username 영역 -->
-        <div class="metadata">
+                <!-- date/username 영역 -->
+            <div class="metadata">
             <div class="date">
                 ${modifiedAt}
             </div>
             <div id="${id}-username" class="username">
                 ${username}
             </div>
-        </div>
-        <!-- contents 조회/수정 영역-->
-        <div class="contents">
+            </div>
+                <!-- contents 조회/수정 영역-->
+            <div class="contents">
             <div id="${id}-contents" class="text">
                 ${contents}
             </div>
             <div id="${id}-editarea" class="edit">
-                <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
+            <textarea id="${id}-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
             </div>
-        </div>
-        <!-- 버튼 영역-->
-        <div class="footer">
+            </div>
+                <!-- 버튼 영역-->
+            <div class="footer">
             <img id="${id}-edit" class="icon-start-edit" src="images/edit.png" alt="" onclick="editPost('${id}')">
             <img id="${id}-delete" class="icon-delete" src="images/delete.png" alt="" onclick="deleteOne('${id}')">
             <img id="${id}-submit" class="icon-end-edit" src="images/done.png" alt="" onclick="submitEdit('${id}')">
-        </div>
-    </div>`;
-            // 2. #cards-box 에 HTML을 붙인다.
+            </div>
+            </div>`;
+                // 2. #cards-box 에 HTML을 붙인다.
             $('#cards-box').append(tempHtml);
-        }
+            }
 
         // 메모를 생성합니다.
         function writePost() {
             // 1. 작성한 메모를 불러옵니다.
             let contents = $('#contents').val()
+
             // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
             if (isValidContents(contents) == false) {
                 return;
@@ -350,14 +351,14 @@
         // 메모를 수정합니다.
         function submitEdit(id) {
             // 1. 작성 대상 메모의 username과 contents 를 확인합니다.
-            let username=$(`#${id}-username`).text().trim();
-            let contents=$(`#${id}-textarea`).val().trim();
+            let username = $(`#${id}-username`).text().trim();
+            let contents = $(`#${id}-textarea`).val().trim();
             // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
-            if(isValidContents(contents)===false){
+            if (isValidContents(contents) === false) {
                 return;
             }
             // 3. 전달할 data JSON으로 만듭니다.
-            let data={'username': username, 'contents': contents};
+            let data = {'username': username, 'contents': contents};
             // 4. PUT /api/memos/{id} 에 data를 전달합니다.
             $.ajax({
                 type: "PUT",
@@ -377,7 +378,7 @@
             $.ajax({
                 type: 'DELETE',
                 url: `/api/memos/${id}`,
-                success: function (){
+                success: function () {
                     alert("삭제 완료");
                     window.location.reload();
                 }
