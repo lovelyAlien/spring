@@ -1,8 +1,3 @@
-function newPage() {
-    window.location.href = 'next.html'
-}
-
-
 // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
 function isValidContents(contents) {
     if (contents == '') {
@@ -16,8 +11,8 @@ function isValidContents(contents) {
     return true;
 }
 
-function isValidTitle(title){
-    if (title==''){
+function isValidTitle(title) {
+    if (title == '') {
         alert('제목을 입력해주세요');
         return false;
     }
@@ -28,8 +23,8 @@ function isValidTitle(title){
     return true;
 }
 
-function isValidUsername(username){
-    if (username==''){
+function isValidUsername(username) {
+    if (username == '') {
         alert('이름을 입력해주세요');
         return false;
     }
@@ -39,7 +34,6 @@ function isValidUsername(username){
     }
     return true;
 }
-
 
 
 // 수정 버튼을 눌렀을 때, 기존 작성 내용을 textarea 에 전달합니다.
@@ -71,38 +65,48 @@ function hideEdits(id) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 여기서부터 코드를 작성해주시면 됩니다.
 
+
+
+
 $(document).ready(function () {
     // HTML 문서를 로드할 때마다 실행합니다.
-    getMessages();
+    showPosts();
 })
 
+
+
 // 메모를 불러와서 보여줍니다.
-function getMessages() {
+function showPosts() {
     // 1. 기존 메모 내용을 지웁니다.
-    $('#cards-box').empty();
+    $('#posts-box').empty();
     // 2. 메모 목록을 불러와서 HTML로 붙입니다.
     $.ajax({
         type: 'GET',
-        url: '/api/memos',
+        url: '/api/posts',
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
-                let message = response[i];
-                let id = message['id'];
-                let username = message['username'];
-                let contents = message['contents'];
-                let modifiedAt = message['modifiedAt'];
-                addHTML(id, username, contents, modifiedAt);
+                let post = response[i];
+                let id = post['id'];
+                let title = post['title'];
+                let username = post['username'];
+                let contents = post['contents'];
+                let modifiedAt = post['modifiedAt']
+                addHTML(id, title, username, contents, modifiedAt);
             }
         }
     })
 }
 
 // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
-function addHTML(id, username, contents, modifiedAt) {
+function addHTML(id, title, username, contents, modifiedAt) {
     // 1. HTML 태그를 만듭니다.
-    let tempHtml = ``;
+    let tempHtml = `<tr id="${id}" class="post" style="cursor:pointer" onclick="location.href='write.html'">
+        <td id="${id}-title">${title}</td>
+        <td id="${id}-username">${username}</td>
+        <td>${modifiedAt}</td>
+    </tr>`;
     // 2. #cards-box 에 HTML을 붙인다.
-    $('#cards-box').append(tempHtml);
+    $('#posts-box').append(tempHtml);
 }
 
 // 메모를 생성합니다.
@@ -114,7 +118,7 @@ function writePost() {
 
     // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
 
-    if (isValidTitle(title)==false){
+    if (isValidTitle(title) == false) {
         return;
     }
     if (isValidUsername(username) == false) {

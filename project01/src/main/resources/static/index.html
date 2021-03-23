@@ -8,63 +8,49 @@
 
 
     <!-- jQuery -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="basic.js"></script>
-    <title>Document</title>
 
+    <title>Document</title>
 
 
 </head>
 
 
 <body>
-    첫 페이지.
-    <input
-            id='go_home'
-            type='button'
-            onclick='newPage()'
-            value='이 버튼을 클릭하면 블로그 홈으로 이동합니다.'
-    />
-    <div id="posts-box" class="area-read">
-        <!-- 게시판 -->
-        <div class="post">
+첫 페이지.
+<input
+        id='go_home'
+        type='button'
+        onclick='newPage()'
+        value='이 버튼을 클릭하면 블로그 홈으로 이동합니다.'
+/>
 
-                <table class="table table-dark table-striped">
-                    <thead>
-                    <tr>
-
-                        <th scope="col">title</th>
-                        <th scope="col">username</th>
-                        <th scope="col">date</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-
-                        <td>WHAT IS THIS</td>
-                        <td>CHOUN JAE SEUNG</td>
-                        <td>DATE</td>
-                    </tr>
-                    <tr>
-
-                        <td>WHAT</td>
-                        <td>CHOUN</td>
-                        <td>DATE</td>
-                    </tr>
-                    <tr>
-                        <td>IS</td>
-                        <td>JAE  </td>
-                        <td>DATE</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <button type="button" class="btn btn-primary" onClick="location.href='write.html'">글쓰기</button>
-
-        </div>
+<!-- 게시판 -->
 
 
-    </div>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+
+        <th scope="col">title</th>
+        <th scope="col">username</th>
+        <th scope="col">date</th>
+    </tr>
+    </thead>
+    <tbody id="posts-box">
+    <tr class="post">
+        <td>WHAT IS THIS</td>
+        <td>CHOUN JAE SEUNG</td>
+        <td>DATE</td>
+    </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-primary" onClick="location.href='write.html'">글쓰기</button>
+
+
 </body>
 </html>

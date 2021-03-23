@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,9 +25,15 @@ public class PostController {
     }
 
     @GetMapping("/api/posts")
-    public List<Post> readPost(){
+    public List<Post> readPosts(){
         return postRepository.findAllByOrderByModifiedAtDesc();
 
+    }
+
+    @GetMapping("/api/posts/{id}")
+    public Optional<Post> readPost(@PathVariable Long id){
+
+        return postRepository.findById(id);
     }
 
     @DeleteMapping("/api/posts/{id}")
