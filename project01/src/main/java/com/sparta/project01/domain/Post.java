@@ -17,23 +17,23 @@ public class Post extends Timestamped{
     @Column(nullable=false)
     private String username;
     @Column(nullable=false)
-    private String content;
+    private String contents;
 
-    public Post(String title, String username, String content){
+    public Post(String title, String username, String contents){
         this.title=title;
         this.username=username;
-        this.content=content;
+        this.contents=contents;
     }
 
     public Post(PostRequestDto requestDto){
         this.title=requestDto.getTitle();
         this.username=requestDto.getUsername();
-        this.content=requestDto.getContent();
+        this.contents=requestDto.getContents();
     }
 
     public void update(PostRequestDto requestDto){
         this.title=requestDto.getTitle();
         this.username=requestDto.getUsername();
-        this.content=requestDto.getContent();
+        this.contents=requestDto.getContents();
     }
 }

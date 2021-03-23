@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="basic.js"></script>
+    <title>Title</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="input-group mb-3">
+        <span class="input-group-text" >Title</span>
+        <input id="title" type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" >Username</span>
+        <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
+    </div>
+    <div class="mb-3">
+        <label for="contents" class="form-label">Example textarea</label>
+        <textarea class="form-control" id="contents" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="writePost()">Submit</button>
+
+
+</div>
+
+
+</body>
+</html>
