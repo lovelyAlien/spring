@@ -11,6 +11,33 @@
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="basic.js"></script>
+    <script>
+        $(document).ready(function () {
+            // HTML 문서를 로드할 때마다 실행합니다.
+            let id = getParameterByName('id');
+            // console.log(id);
+
+            $.ajax({
+                type: 'GET',
+                url: `/api/posts/${id}`,
+                success: function(response){
+                    let title=response['title'];
+                    let username=response['username'];
+                    let date=formatDate(response['modifiedAt']);
+                    let contents=response['contents'];
+
+                    $('#title').val(title);
+                    $('#username').val(username);
+                    $('#date').val(date);
+                    $('#contents').val(contents);
+
+
+                }
+            })
+
+
+        })
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -26,8 +53,8 @@
                aria-describedby="basic-addon2">
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text">Username</span>
-        <input id="date" type="text" class="form-control" placeholder="Username" aria-label="Username"
+        <span class="input-group-text">Date</span>
+        <input id="date" type="text" class="form-control" placeholder="Date" aria-label="Date"
                aria-describedby="basic-addon2">
     </div>
     <div class="mb-3">

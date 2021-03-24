@@ -30,6 +30,10 @@ public class PostController {
 
     }
 
+    @GetMapping("/api/posts/{id}")
+    public Optional<Post> showPost(@PathVariable Long id){
+        return postRepository.findById(id);
+    }
 
 
     @DeleteMapping("/api/posts/{id}")

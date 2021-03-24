@@ -1,3 +1,19 @@
+
+// url 파라미터 정보 가져오기
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+//format date
+function formatDate(before){
+    let date = before.split('.');
+    let after=date[0].replace('T',' ');
+    return after;
+}
+
 // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
 function isValidContents(contents) {
     if (contents == '') {
@@ -65,13 +81,10 @@ function hideEdits(id) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 여기서부터 코드를 작성해주시면 됩니다.
 
+function showPost(id){
+    window.location. href="show.html?id="+ id;
 
-
-
-
-
-
-
+}
 
 // 메모를 불러와서 보여줍니다.
 function showPosts() {
@@ -88,7 +101,7 @@ function showPosts() {
                 let title = post['title'];
                 let username = post['username'];
                 let contents = post['contents'];
-                let modifiedAt = post['modifiedAt']
+                let modifiedAt = formatDate(post['modifiedAt']);
                 addHTML(id, title, username, contents, modifiedAt);
             }
         }
@@ -98,7 +111,7 @@ function showPosts() {
 // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
 function addHTML(id, title, username, contents, modifiedAt) {
     // 1. HTML 태그를 만듭니다.
-    let tempHtml = `<tr id="${id}" class="post" style="cursor:pointer" onclick="location.href='show.html'">
+    let tempHtml = `<tr id="${id}" class="post" style="cursor:pointer" onclick="showPost(${id})">
         <td id="${id}-title">${title}</td>
         <td id="${id}-username">${username}</td>
         <td>${modifiedAt}</td>
@@ -137,7 +150,7 @@ function writePost() {
         data: JSON.stringify(data),
         success: function (response) {
             alert("제출 성공");
-            window.location.href = 'index.html'
+            window.location.href = '/'
         }
     })
 }
