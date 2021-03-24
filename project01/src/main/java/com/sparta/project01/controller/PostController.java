@@ -30,11 +30,7 @@ public class PostController {
 
     }
 
-    @GetMapping("/api/posts/{id}")
-    public Optional<Post> readPost(@PathVariable Long id){
 
-        return postRepository.findById(id);
-    }
 
     @DeleteMapping("/api/posts/{id}")
     public Long deletePost(@PathVariable Long id){

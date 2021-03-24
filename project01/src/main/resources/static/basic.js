@@ -68,10 +68,8 @@ function hideEdits(id) {
 
 
 
-$(document).ready(function () {
-    // HTML 문서를 로드할 때마다 실행합니다.
-    showPosts();
-})
+
+
 
 
 
@@ -100,7 +98,7 @@ function showPosts() {
 // 메모 하나를 HTML로 만들어서 body 태그 내 원하는 곳에 붙입니다.
 function addHTML(id, title, username, contents, modifiedAt) {
     // 1. HTML 태그를 만듭니다.
-    let tempHtml = `<tr id="${id}" class="post" style="cursor:pointer" onclick="location.href='write.html'">
+    let tempHtml = `<tr id="${id}" class="post" style="cursor:pointer" onclick="location.href='show.html'">
         <td id="${id}-title">${title}</td>
         <td id="${id}-username">${username}</td>
         <td>${modifiedAt}</td>
