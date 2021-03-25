@@ -10,25 +10,24 @@ function getParameterByName(name) {
 //format date
 function formatDate(before){
     let date = before.split('.');
-    let after=date[0].replace('T',' ');
-    return after;
+    return date[0].replace('T',' ');
 }
 
 // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
 function isValidContents(contents) {
-    if (contents == '') {
+    if (contents === '') {
         alert('내용을 입력해주세요');
         return false;
     }
-    if (contents.trim().length > 900) {
-        alert('공백 포함 900자 이하로 입력해주세요');
+    if (contents.trim().length > 3000) {
+        alert('공백 포함 3000자 이하로 입력해주세요');
         return false;
     }
     return true;
 }
 
 function isValidTitle(title) {
-    if (title == '') {
+    if (title === '') {
         alert('제목을 입력해주세요');
         return false;
     }
@@ -40,7 +39,7 @@ function isValidTitle(title) {
 }
 
 function isValidUsername(username) {
-    if (username == '') {
+    if (username === '') {
         alert('이름을 입력해주세요');
         return false;
     }
@@ -155,40 +154,48 @@ function writePost() {
     })
 }
 
-// // 메모를 수정합니다.
-// function submitEdit(id) {
-//     // 1. 작성 대상 메모의 username과 contents 를 확인합니다.
-//     let username = $(`#${id}-username`).text().trim();
-//     let contents = $(`#${id}-textarea`).val().trim();
-//     // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
-//     if (isValidContents(contents) === false) {
-//         return;
-//     }
-//     // 3. 전달할 data JSON으로 만듭니다.
-//     let data = {'username': username, 'contents': contents};
-//     // 4. PUT /api/memos/{id} 에 data를 전달합니다.
-//     $.ajax({
-//         type: "PUT",
-//         url: `/api/memos/${id}`,
-//         contentType: "application/json",
-//         data: JSON.stringify(data),
-//         success: function (response) {
-//             alert('메시지 변경에 성공하였습니다.');
-//             window.location.reload();
-//         }
-//     });
-// }
-//
-// // 메모를 삭제합니다.
-// function deleteOne(id) {
-//     // 1. DELETE /api/memos/{id}
-//     $.ajax({
-//         type: 'DELETE',
-//         url: `/api/memos/${id}`,
-//         success: function () {
-//             alert("삭제 완료");
-//             window.location.reload();
-//         }
-//     })
-// }
+// 메모를 수정합니다.
+function submitEdit(id) {
+    // 1. 작성 대상 메모의 username과 contents 를 확인합니다.
+    let title = $('#title').val().trim();
+    let username = $('#username').val().trim();
+    let contents = $('#contents').val().trim();
+    // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
+
+    if (isValidTitle(title) === false)  {
+        return;
+    }
+    if (isValidUsername(username) === false) {
+        return;
+    }
+    if (isValidContents(contents) === false) {
+        return;
+    }
+    // 3. 전달할 data JSON으로 만듭니다.
+    let data = {'title': title, 'username': username, 'contents': contents};
+    // 4. PUT /api/memos/{id} 에 data를 전달합니다.
+    $.ajax({
+        type: "PUT",
+        url: `/api/memos/${id}`,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (response) {
+            alert('게시글이 수정되었습니다.');
+            window.location.reload();
+        }
+    });
+}
+
+// 메모를 삭제합니다.
+function deleteOne(id) {
+    // 1. DELETE /api/memos/{id}
+    $.ajax({
+        type: 'DELETE',
+        url: `/api/memos/${id}`,
+        success: function () {
+            alert("삭제 완료");
+            window.location.reload();
+        }
+    })
+}
 

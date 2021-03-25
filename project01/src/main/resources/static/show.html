@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="basic.js"></script>
     <script>
+        let id = getParameterByName('id');
+
         $(document).ready(function () {
             // HTML 문서를 로드할 때마다 실행합니다.
-            let id = getParameterByName('id');
-            // console.log(id);
+
+
 
             $.ajax({
                 type: 'GET',
@@ -61,7 +63,8 @@
         <label for="contents" class="form-label">Example textarea</label>
         <textarea class="form-control" id="contents" rows="3"></textarea>
     </div>
-<!--    <button type="submit" class="btn btn-primary" onclick="writePost()">Submit</button>-->
+    <button type="button" class="btn btn-warning" onclick="submitEdit(id)">Edit</button>
+    <button type="button" class="btn btn-danger" onclick="deleteOne(id)">Delete</button>
 
 
 </div>
