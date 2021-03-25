@@ -1,0 +1,48 @@
+.bd-example  {
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 1px;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.container{
+    margin-top:50px;
+}
+
+.form-floating {
+    margin-bottom:24px;
+}
+
+
+.post:hover{
+    border-top-color: whitesmoke;
+    border-bottom-color: whitesmoke;
+    border-left-color: whitesmoke;
+    border-right-color: whitesmoke;
+    border-style:inset;
+    border-width: 5px;
+}
+.post:active {
+
+    background-color: #3e8e41;
+
+    box-shadow: 0 5px #666;
+
+    transform: translateY(4px);
+
+}
+
+body {
+    margin: 0;
+    background-image:url("images/background.PNG")
+}
+html, body {
+    height: 100%;
+}
+
+#dpTime {
+    text-align: center;
+    margin-top: 50px;
+}

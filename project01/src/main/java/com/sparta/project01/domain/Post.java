@@ -16,7 +16,7 @@ public class Post extends Timestamped{
     private String title;
     @Column(nullable=false)
     private String username;
-    @Column(nullable=false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
     public Post(String title, String username, String contents){

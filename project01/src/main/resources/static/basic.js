@@ -1,3 +1,28 @@
+//현재 시간
+function dpTime(){
+    var now = new Date();
+    hours = now.getHours();
+    minutes = now.getMinutes();
+    seconds = now.getSeconds();
+    if (hours > 12){
+        hours -= 12;
+        ampm = "오후 ";
+    }else{
+        ampm = "오전 ";
+    }
+    if (hours < 10){
+        hours = "0" + hours;
+    }
+    if (minutes < 10){
+        minutes = "0" + minutes;
+    }
+    if (seconds < 10){
+        seconds = "0" + seconds;
+    }
+    document.getElementById("dpTime").innerHTML = ampm + hours + ":" + minutes + ":" + seconds;
+}
+
+
 
 // url 파라미터 정보 가져오기
 function getParameterByName(name) {
@@ -9,6 +34,8 @@ function getParameterByName(name) {
 
 //내용의 글자 길이 보여주기
 function showContentLength(){
+
+    // $('#show_cnt').html("("+ $('#contents').val().length+" / 3000)");
 
     $('#contents').on('keyup', function() {
         $('#show_cnt').html("("+$(this).val().length+" / 3000)");
@@ -27,7 +54,23 @@ function formatDate(before){
 }
 
 // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
-function isValidContents(contents) {
+function isValid(title, username, contents){
+    if (title === '') {
+        alert('제목을 입력해주세요');
+        return false;
+    }
+    if (title.trim().length > 50) {
+        alert('공백 포함 50자 이하로 입력해주세요');
+        return false;
+    }
+    if (username === '') {
+        alert('이름을 입력해주세요');
+        return false;
+    }
+    if (username.trim().length > 30) {
+        alert('공백 포함 30자 이하로 입력해주세요');
+        return false;
+    }
     if (contents === '') {
         alert('내용을 입력해주세요');
         return false;
@@ -39,29 +82,6 @@ function isValidContents(contents) {
     return true;
 }
 
-function isValidTitle(title) {
-    if (title === '') {
-        alert('제목을 입력해주세요');
-        return false;
-    }
-    if (title.trim().length > 50) {
-        alert('공백 포함 50자 이하로 입력해주세요');
-        return false;
-    }
-    return true;
-}
-
-function isValidUsername(username) {
-    if (username === '') {
-        alert('이름을 입력해주세요');
-        return false;
-    }
-    if (username.trim().length > 30) {
-        alert('공백 포함 30자 이하로 입력해주세요');
-        return false;
-    }
-    return true;
-}
 
 
 // 수정 버튼을 눌렀을 때, 기존 작성 내용을 textarea 에 전달합니다.
@@ -135,22 +155,14 @@ function addHTML(id, title, username, contents, modifiedAt) {
 // 메모를 생성합니다.
 function writePost() {
     // 1. 작성한 메모를 불러옵니다.
-    let title = $('#title').val()
-    let username = $('#username').val()
-    let contents = $('#contents').val()
+    let title = $('#title').val().trim();
+    let username = $('#username').val().trim();
+    let contents = $('#contents').val().trim();
 
     // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
-
-    if (isValidTitle(title) == false) {
+    if(isValid(title,username,contents)===false){
         return;
     }
-    if (isValidUsername(username) == false) {
-        return;
-    }
-    if (isValidContents(contents) == false) {
-        return;
-    }
-
 
     // 3. 전달할 data JSON으로 만듭니다.
     let data = {'title': title, 'username': username, 'contents': contents};
@@ -175,13 +187,7 @@ function submitEdit(id) {
     let contents = $('#contents').val().trim();
     // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
 
-    if (isValidTitle(title) === false)  {
-        return;
-    }
-    if (isValidUsername(username) === false) {
-        return;
-    }
-    if (isValidContents(contents) === false) {
+    if(isValid(title,username,contents)===false){
         return;
     }
     // 3. 전달할 data JSON으로 만듭니다.
@@ -194,7 +200,7 @@ function submitEdit(id) {
         data: JSON.stringify(data),
         success: function (response) {
             alert('게시글이 수정되었습니다.');
-            window.location.href='/';
+            window.location.reload();
         }
     });
 }

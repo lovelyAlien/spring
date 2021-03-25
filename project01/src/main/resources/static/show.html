@@ -32,6 +32,8 @@
                 }
             })
 
+
+
             showContentLength();
 
             $('#edit-button').click(function(){
@@ -69,16 +71,17 @@
         <input id="date" type="text" class="form-control" placeholder="Date" aria-label="Date"
                aria-describedby="basic-addon2">
     </div>
-    <div class="mb-3">
-        <label for="contents" class="form-label">Example textarea</label>
-        <textarea class="form-control" id="contents" rows="3"></textarea>
-        <div id="show_cnt">(0/3000)</div>
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="contents" style="height: 300px"></textarea>
+        <label for="contents">Just do it.</label>
+        <div id="show_cnt"></div>
     </div>
-    <button id="edit-button" type="button" class="btn btn-warning" style="cursor:pointer">Edit</button>
-    <button id="delete-button" type="button" class="btn btn-danger" style="cursor:pointer">Delete</button>
-    <button id="home-button" type="button" class="btn btn-primary" style="cursor:pointer">Home</button>
-
-
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button id="edit-button" type="button" class="btn btn-warning" style="cursor:pointer">Edit</button>
+        <button id="delete-button" type="button" class="btn btn-danger" style="cursor:pointer">Delete</button>
+        <button id="home-button" type="button" class="btn btn-primary" style="cursor:pointer">Home</button>
+    </div>
 </div>
 </body>
 </html>

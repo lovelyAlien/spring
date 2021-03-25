@@ -13,6 +13,14 @@
 
         $(document).ready(function() {
             showContentLength();
+
+            $('#home-button').click(function(){
+                window.location.href='/'
+            })
+
+
+
+
         })
 
     </script>
@@ -27,13 +35,17 @@
         <span class="input-group-text" >Username</span>
         <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
     </div>
-    <div class="mb-3">
-        <label for="contents" class="form-label">Example textarea</label>
-        <textarea class="form-control" id="contents" rows="3"></textarea>
-        <div id="show_cnt">(0/3000)</div>
-    </div>
-    <button type="submit" class="btn btn-primary" onclick="writePost()">Submit</button>
 
+
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="contents" style="height: 300px"></textarea>
+        <label for="contents">Just do it.</label>
+        <div id="show_cnt"></div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-success" onclick="writePost()">Submit</button>
+        <button id="home-button" type="button" class="btn btn-primary" style="cursor:pointer">Home</button>
+    </div>
 
 </div>
 
