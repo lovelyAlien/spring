@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="style.css">
     <script src="basic.js"></script>
     <title>Title</title>
+    <script>
 
+        $(document).ready(function() {
+            showContentLength();
+        })
+
+    </script>
 </head>
 <body>
 <div class="container">
@@ -24,6 +30,7 @@
     <div class="mb-3">
         <label for="contents" class="form-label">Example textarea</label>
         <textarea class="form-control" id="contents" rows="3"></textarea>
+        <div id="show_cnt">(0/3000)</div>
     </div>
     <button type="submit" class="btn btn-primary" onclick="writePost()">Submit</button>
 

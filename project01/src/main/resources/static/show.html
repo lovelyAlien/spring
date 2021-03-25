@@ -16,9 +16,6 @@
 
         $(document).ready(function () {
             // HTML 문서를 로드할 때마다 실행합니다.
-
-
-
             $.ajax({
                 type: 'GET',
                 url: `/api/posts/${id}`,
@@ -32,10 +29,23 @@
                     $('#username').val(username);
                     $('#date').val(date);
                     $('#contents').val(contents);
-
-
                 }
             })
+
+            showContentLength();
+
+            $('#edit-button').click(function(){
+                submitEdit(id);
+            })
+
+            $('#delete-button').click(function(){
+                deleteOne(id);
+            })
+
+            $('#home-button').click(function(){
+                window.location.href='/'
+            })
+
 
 
         })
@@ -62,9 +72,11 @@
     <div class="mb-3">
         <label for="contents" class="form-label">Example textarea</label>
         <textarea class="form-control" id="contents" rows="3"></textarea>
+        <div id="show_cnt">(0/3000)</div>
     </div>
-    <button type="button" class="btn btn-warning" onclick="submitEdit(id)">Edit</button>
-    <button type="button" class="btn btn-danger" onclick="deleteOne(id)">Delete</button>
+    <button id="edit-button" type="button" class="btn btn-warning" style="cursor:pointer">Edit</button>
+    <button id="delete-button" type="button" class="btn btn-danger" style="cursor:pointer">Delete</button>
+    <button id="home-button" type="button" class="btn btn-primary" style="cursor:pointer">Home</button>
 
 
 </div>

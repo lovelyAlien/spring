@@ -7,6 +7,19 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+//내용의 글자 길이 보여주기
+function showContentLength(){
+
+    $('#contents').on('keyup', function() {
+        $('#show_cnt').html("("+$(this).val().length+" / 3000)");
+
+        if($(this).val().length > 3000) {
+            $(this).val($(this).val().substring(0, 3000));
+            $('#show_cnt').html("(3000 / 3000)");
+        }
+    })
+}
+
 //format date
 function formatDate(before){
     let date = before.split('.');
@@ -111,10 +124,10 @@ function showPosts() {
 function addHTML(id, title, username, contents, modifiedAt) {
     // 1. HTML 태그를 만듭니다.
     let tempHtml = `<tr id="${id}" class="post" style="cursor:pointer" onclick="showPost(${id})">
-        <td id="${id}-title">${title}</td>
-        <td id="${id}-username">${username}</td>
-        <td>${modifiedAt}</td>
-    </tr>`;
+                        <td id="${id}-title">${title}</td>
+                        <td id="${id}-username">${username}</td>
+                        <td>${modifiedAt}</td>
+                    </tr>`;
     // 2. #cards-box 에 HTML을 붙인다.
     $('#posts-box').append(tempHtml);
 }
@@ -176,12 +189,12 @@ function submitEdit(id) {
     // 4. PUT /api/memos/{id} 에 data를 전달합니다.
     $.ajax({
         type: "PUT",
-        url: `/api/memos/${id}`,
+        url: `/api/posts/${id}`,
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (response) {
             alert('게시글이 수정되었습니다.');
-            window.location.reload();
+            window.location.href='/';
         }
     });
 }
@@ -191,10 +204,10 @@ function deleteOne(id) {
     // 1. DELETE /api/memos/{id}
     $.ajax({
         type: 'DELETE',
-        url: `/api/memos/${id}`,
+        url: `/api/posts/${id}`,
         success: function () {
             alert("삭제 완료");
-            window.location.reload();
+            window.location.href='/';
         }
     })
 }
