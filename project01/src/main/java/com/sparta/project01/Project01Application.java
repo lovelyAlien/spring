@@ -13,7 +13,7 @@ public class Project01Application {
 
 
     @PostConstruct
-    void started(){
+    void started() {
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
     }
 

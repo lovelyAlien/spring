@@ -1,4 +1,4 @@
-.bd-example  {
+.bd-example {
     padding: 1.5rem;
     margin-right: 0;
     margin-left: 0;
@@ -7,23 +7,24 @@
     border-top-right-radius: .25rem;
 }
 
-.container{
-    margin-top:50px;
+.container {
+    margin-top: 50px;
 }
 
 .form-floating {
-    margin-bottom:24px;
+    margin-bottom: 24px;
 }
 
 
-.post:hover{
+.post:hover {
     border-top-color: whitesmoke;
     border-bottom-color: whitesmoke;
     border-left-color: whitesmoke;
     border-right-color: whitesmoke;
-    border-style:inset;
+    border-style: inset;
     border-width: 5px;
 }
+
 .post:active {
 
     background-color: #3e8e41;
@@ -36,8 +37,9 @@
 
 body {
     margin: 0;
-    background-image:url("images/background.PNG")
+    background-image: url("images/background.PNG")
 }
+
 html, body {
     height: 100%;
 }

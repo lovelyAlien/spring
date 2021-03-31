@@ -25,10 +25,12 @@ public class Course extends Timestamped {
         this.title = title;
         this.tutor = tutor;
     }
-    public Course (CourseRequestDto requestDto){
-        this.title=requestDto.getTitle();
-        this.tutor=requestDto.getTutor();
+
+    public Course(CourseRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.tutor = requestDto.getTutor();
     }
+
     public void update(CourseRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.tutor = requestDto.getTutor();

@@ -27,7 +27,7 @@ public class Week02Application {
 
             System.out.println("데이터 인쇄");
             List<Course> courseList = courseRepository.findAll();
-            for (int i=0; i<courseList.size(); i++) {
+            for (int i = 0; i < courseList.size(); i++) {
                 Course course = courseList.get(i);
                 System.out.println(course.getId());
                 System.out.println(course.getTitle());
@@ -35,10 +35,10 @@ public class Week02Application {
             }
 
 
-            CourseRequestDto requestDto= new CourseRequestDto("웹개발의 봄, Spring", "천재승");
+            CourseRequestDto requestDto = new CourseRequestDto("웹개발의 봄, Spring", "천재승");
             courseService.update(1L, requestDto);
             courseList = courseRepository.findAll();
-            for (int i=0; i<courseList.size(); i++) {
+            for (int i = 0; i < courseList.size(); i++) {
                 Course course = courseList.get(i);
                 System.out.println(course.getId());
                 System.out.println(course.getTitle());

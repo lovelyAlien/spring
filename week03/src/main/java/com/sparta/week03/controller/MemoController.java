@@ -18,27 +18,27 @@ public class MemoController {
     private final MemoService memoService;
 
     @PostMapping("/api/memos")
-    public Memo creatMemo(@RequestBody MemoRequestDto requestDto){
-        Memo memo =new Memo(requestDto);
+    public Memo creatMemo(@RequestBody MemoRequestDto requestDto) {
+        Memo memo = new Memo(requestDto);
 
         return memoRepository.save(memo);
     }
 
     @GetMapping("/api/memos")
-    public List<Memo> readMemos(){
-        LocalDateTime now  =LocalDateTime.now();
-        LocalDateTime yesterday=LocalDateTime.now().minusDays(1);
-        return memoRepository.findAllByModifiedAtBetweenOrderByModifiedAtDesc(yesterday,now );
+    public List<Memo> readMemos() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime yesterday = LocalDateTime.now().minusDays(1);
+        return memoRepository.findAllByModifiedAtBetweenOrderByModifiedAtDesc(yesterday, now);
     }
 
     @DeleteMapping("/api/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id){
+    public Long deleteMemo(@PathVariable Long id) {
         memoRepository.deleteById(id);
         return id;
     }
 
     @PutMapping("/api/memos/{id}")
-    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto){
+    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
         return memoService.update(id, requestDto);
     }
 }

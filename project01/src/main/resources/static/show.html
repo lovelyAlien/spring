@@ -19,11 +19,11 @@
             $.ajax({
                 type: 'GET',
                 url: `/api/posts/${id}`,
-                success: function(response){
-                    let title=response['title'];
-                    let username=response['username'];
-                    let date=formatDate(response['modifiedAt']);
-                    let contents=response['contents'];
+                success: function (response) {
+                    let title = response['title'];
+                    let username = response['username'];
+                    let date = formatDate(response['modifiedAt']);
+                    let contents = response['contents'];
 
                     $('#title').val(title);
                     $('#username').val(username);
@@ -33,21 +33,19 @@
             })
 
 
-
             showContentLength();
 
-            $('#edit-button').click(function(){
+            $('#edit-button').click(function () {
                 submitEdit(id);
             })
 
-            $('#delete-button').click(function(){
+            $('#delete-button').click(function () {
                 deleteOne(id);
             })
 
-            $('#home-button').click(function(){
-                window.location.href='/'
+            $('#home-button').click(function () {
+                window.location.href = '/'
             })
-
 
 
         })
@@ -73,7 +71,8 @@
     </div>
 
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="contents" style="height: 300px"></textarea>
+        <textarea class="form-control" placeholder="Leave a comment here" id="contents"
+                  style="height: 300px"></textarea>
         <label for="contents">Just do it.</label>
         <div id="show_cnt"></div>
     </div>

@@ -1,27 +1,26 @@
 //현재 시간
-function dpTime(){
+function dpTime() {
     var now = new Date();
     hours = now.getHours();
     minutes = now.getMinutes();
     seconds = now.getSeconds();
-    if (hours > 12){
+    if (hours > 12) {
         hours -= 12;
         ampm = "오후 ";
-    }else{
+    } else {
         ampm = "오전 ";
     }
-    if (hours < 10){
+    if (hours < 10) {
         hours = "0" + hours;
     }
-    if (minutes < 10){
+    if (minutes < 10) {
         minutes = "0" + minutes;
     }
-    if (seconds < 10){
+    if (seconds < 10) {
         seconds = "0" + seconds;
     }
     document.getElementById("dpTime").innerHTML = ampm + hours + ":" + minutes + ":" + seconds;
 }
-
 
 
 // url 파라미터 정보 가져오기
@@ -33,14 +32,14 @@ function getParameterByName(name) {
 }
 
 //내용의 글자 길이 보여주기
-function showContentLength(){
+function showContentLength() {
 
     // $('#show_cnt').html("("+ $('#contents').val().length+" / 3000)");
 
-    $('#contents').on('keyup', function() {
-        $('#show_cnt').html("("+$(this).val().length+" / 3000)");
+    $('#contents').on('keyup', function () {
+        $('#show_cnt').html("(" + $(this).val().length + " / 3000)");
 
-        if($(this).val().length > 3000) {
+        if ($(this).val().length > 3000) {
             $(this).val($(this).val().substring(0, 3000));
             $('#show_cnt').html("(3000 / 3000)");
         }
@@ -48,13 +47,13 @@ function showContentLength(){
 }
 
 //format date
-function formatDate(before){
+function formatDate(before) {
     let date = before.split('.');
-    return date[0].replace('T',' ');
+    return date[0].replace('T', ' ');
 }
 
 // 사용자가 내용을 올바르게 입력하였는지 확인합니다.
-function isValid(title, username, contents){
+function isValid(title, username, contents) {
     if (title === '') {
         alert('제목을 입력해주세요');
         return false;
@@ -81,7 +80,6 @@ function isValid(title, username, contents){
     }
     return true;
 }
-
 
 
 // 수정 버튼을 눌렀을 때, 기존 작성 내용을 textarea 에 전달합니다.
@@ -113,8 +111,8 @@ function hideEdits(id) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 여기서부터 코드를 작성해주시면 됩니다.
 
-function showPost(id){
-    window.location. href="show.html?id="+ id;
+function showPost(id) {
+    window.location.href = "show.html?id=" + id;
 
 }
 
@@ -160,7 +158,7 @@ function writePost() {
     let contents = $('#contents').val().trim();
 
     // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
-    if(isValid(title,username,contents)===false){
+    if (isValid(title, username, contents) === false) {
         return;
     }
 
@@ -187,7 +185,7 @@ function submitEdit(id) {
     let contents = $('#contents').val().trim();
     // 2. 작성한 메모가 올바른지 isValidContents 함수를 통해 확인합니다.
 
-    if(isValid(title,username,contents)===false){
+    if (isValid(title, username, contents) === false) {
         return;
     }
     // 3. 전달할 data JSON으로 만듭니다.
@@ -213,7 +211,7 @@ function deleteOne(id) {
         url: `/api/posts/${id}`,
         success: function () {
             alert("삭제 완료");
-            window.location.href='/';
+            window.location.href = '/';
         }
     })
 }

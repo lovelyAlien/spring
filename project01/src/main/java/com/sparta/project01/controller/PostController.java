@@ -19,31 +19,31 @@ public class PostController {
 
 
     @PostMapping("/api/posts")
-    public Post createPost(@RequestBody PostRequestDto requestDto){
-        Post post=new Post(requestDto);
+    public Post createPost(@RequestBody PostRequestDto requestDto) {
+        Post post = new Post(requestDto);
         return postRepository.save(post);
     }
 
     @GetMapping("/api/posts")
-    public List<Post> readPosts(){
+    public List<Post> readPosts() {
         return postRepository.findAllByOrderByModifiedAtDesc();
 
     }
 
     @GetMapping("/api/posts/{id}")
-    public Optional<Post> showPost(@PathVariable Long id){
+    public Optional<Post> showPost(@PathVariable Long id) {
         return postRepository.findById(id);
     }
 
 
     @DeleteMapping("/api/posts/{id}")
-    public Long deletePost(@PathVariable Long id){
+    public Long deletePost(@PathVariable Long id) {
         postRepository.deleteById(id);
         return id;
     }
 
     @PutMapping("/api/posts/{id}")
-    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto){
+    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.update(id, requestDto);
     }
 }
