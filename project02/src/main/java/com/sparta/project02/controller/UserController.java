@@ -38,8 +38,17 @@ public class UserController {
 
     // 회원 가입 요청 처리
     @PostMapping("/user/signup")
-    public String registerUser(SignupRequestDto requestDto) {
-        userService.registerUser(requestDto);
+    public String registerUser(SignupRequestDto requestDto, Model model) {
+
+        try{
+            userService.registerUser(requestDto);
+        } catch( IllegalArgumentException e){
+            // 에러 발생 시 이 쪽으로 이동되고, 에러메시지를 model 의 "error" 값으로 전달
+            model.addAttribute("error",e.getMessage());
+            return "signup";
+        }
+
+
         return "redirect:/";
     }
 }
