@@ -26,6 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/user/**").permitAll() //중요!!
                 .antMatchers("/h2-console/**").permitAll() //중요!!
+                //board 폴더를 login 없이 허용
+                .antMatchers("/board/**").permitAll()
+                //common 폴더를 login 없이 허용
+                .antMatchers("/common/**").permitAll()
                 // 그 외 모든 요청은 인증과정 필요
                 .anyRequest().authenticated() //모든 요청에 대해서 인증을 한다.
                 .and()

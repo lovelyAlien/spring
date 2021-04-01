@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserController {
@@ -39,6 +41,7 @@ public class UserController {
     // 회원 가입 요청 처리
     @PostMapping("/user/signup")
     public String registerUser(SignupRequestDto requestDto, Model model) {
+        //닉네임 최소 3자 이상, 알파벳 대소문자(a~z, A~Z), 숫자(0~9)로 구성하기
 
         try{
             userService.registerUser(requestDto);
@@ -47,7 +50,6 @@ public class UserController {
             model.addAttribute("error",e.getMessage());
             return "signup";
         }
-
 
         return "redirect:/";
     }
