@@ -1,4 +1,4 @@
-package com.sparta.project02.controller;
+//package com.sparta.project02.controller;
 
 //import com.sparta.project02.security.UserDetailsImpl;
 //import com.sparta.project02.service.BoardService;

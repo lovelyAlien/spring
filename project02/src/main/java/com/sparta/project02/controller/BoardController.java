@@ -35,7 +35,11 @@ public class BoardController {
 
     @PostMapping("/post")
     public String write(BoardRequestDto boardDto) {
+        System.out.println(boardDto.getTitle());
+        System.out.println(boardDto.getAuthor());
+        System.out.println(boardDto.getContent());
         boardService.savePost(boardDto);
+
         return "redirect:/";
     }
 
