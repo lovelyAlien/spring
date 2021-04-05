@@ -33,7 +33,7 @@ public class Product extends Timestamped{
     @Column(nullable = false)
     private String product_image;
 
-//    @Column(nullable = false)
+//    @Column(columnDefinition = "TEXT", nullable = false)
 //    private String description;
 
 //    @Column(nullable = false)
@@ -44,6 +44,7 @@ public class Product extends Timestamped{
 
 //    @Column(nullable = false)
 //    private String keyword;
+
     @Builder
     public Product(String name, String price, String product_image){
         this.name = name;
